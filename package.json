@@ -1,0 +1,27 @@
+{
+  "name": "node-pokemon-api",
+  "version": "1.0.0",
+  "description": "An awesome API Rest handle some pokemons.",
+  "homepage": "https://github.com/MaximeTTS/node-pokemon-api#readme",
+  "bugs": {
+    "url": "https://github.com/MaximeTTS/node-pokemon-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MaximeTTS/node-pokemon-api.git"
+  },
+  "license": "ISC",
+  "author": "MaximeTTS",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.2"
+  }
+}
