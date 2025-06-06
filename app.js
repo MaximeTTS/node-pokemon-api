@@ -1,9 +1,14 @@
 const express = require("express"); // 1. Charge la librairie Express.
 let pokemons = require("./mock-pokemon");
 const { success } = require("./helper");
+const morgan = require("morgan");
+const favicon = require("serve-favicon");
 
 const app = express(); // 2. Crée une instance d’Express (le serveur).
 const port = 3000; // 3. Définit le port 3000 pour écouter les requêtes.
+
+//middelwares morgane pour les url et favicon pour afficher le favicon
+app.use(favicon(__dirname + "/favicon.ico")).use(morgan("dev"));
 
 app.get("/", (req, res) => {
   res.send("Hello, express");
