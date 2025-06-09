@@ -18,6 +18,7 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
+    "body-parser": "^2.2.0",
     "express": "^5.1.0",
     "nodemon": "^3.1.10",
     "serve-favicon": "^2.5.0"
