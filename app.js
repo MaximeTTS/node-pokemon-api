@@ -1,6 +1,6 @@
 const express = require("express"); // 1. Charge la librairie Express.
 let pokemons = require("./mock-pokemon");
-const { success } = require("./helper");
+const { success, getUniqueId } = require("./helper");
 const morgan = require("morgan");
 const favicon = require("serve-favicon");
 
@@ -25,6 +25,15 @@ app.get("/api/pokemons/:id", (req, res) => {
 app.get("/api/pokemons", (req, res) => {
   const message = "Voici la liste complete du pokedex :";
   res.json(success(message, pokemons));
+});
+
+//Créer un nouveau pokemon
+app.post("/api/pokemons", (req, res) => {
+  const id = getUniqueId(pokemons);
+  const pokemonCreated = { ...req.body, ...{ id: id, created: new Date() } };
+  pokemons.push(pokemonCreated);
+  const message = `Le pokémon ${pokemonCreated.name} a bien été crée.`;
+  res.json(success(message, pokemonCreated));
 });
 
 app.listen(port, () => {
