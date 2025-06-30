@@ -1,20 +1,20 @@
 const express = require("express"); // 1. Charge la librairie Express.
 let pokemons = require("./src/db/mock-pokemon");
-const morgan = require("morgan");
 const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 const sequelize = require("./src/db/sequelize");
 
 const app = express(); // 2. Crée une instance d’Express (le serveur).
-const port = 3000; // 3. Définit le port 3000 pour écouter les requêtes.
+const port = process.env.PORT || 3000; // 3. Définit le port 3000 pour écouter les requêtes.
 
 //middelwares morgane pour les url et favicon pour afficher le favicon
-app
-  .use(favicon(__dirname + "/favicon.ico"))
-  .use(morgan("dev"))
-  .use(bodyParser.json());
+app.use(favicon(__dirname + "/favicon.ico")).use(bodyParser.json());
 
 sequelize.initDb();
+
+app.get("/", (req, res) => {
+  res.json("Hello, Hekuru");
+});
 
 //nos futurs points de terminaisons/
 require("./src/routes/findAllPokemons")(app);

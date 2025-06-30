@@ -15,7 +15,8 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "NODE_ENV=production node app.js",
+    "dev": "NODE_ENV=development nodemon app.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -28,7 +29,6 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "@types/express": "^5.0.2",
-    "morgan": "^1.10.0"
+    "@types/express": "^5.0.2"
   }
 }
