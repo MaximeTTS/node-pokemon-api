@@ -1,6 +1,8 @@
 /* Authentification : Créer un modèle User avec Sequelize */
 const { User } = require("../db/sequelize");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const privateKey = require("../auth/private_key");
 
 module.exports = (app) => {
   app.post("/api/login", (req, res) => {
@@ -20,8 +22,11 @@ module.exports = (app) => {
             return res.status(401).json({ message: "Mot de passe incorrect." });
           }
 
+          //JWT
+          const token = jwt.sign({ userId: user.id }, privateKey, { expiresIn: "24h" });
+
           // 4️⃣ Tout est bon → on renvoie le succès
-          return res.json({ message: "Connexion réussie", data: user });
+          return res.json({ message: "Connexion réussie", data: user, token });
         });
       })
       .catch((error) => {
